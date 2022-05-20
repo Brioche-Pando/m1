@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Category index
+{% endblock %}
+
+{% block body %}
+	<main>
+		<header class="l-header c-header">
+			<h1 class="c-header__title">Liste de toutes les categories :</h1>
+			<a href="{{ path('app_category_new') }}" class="c-cta">Ajouter</a>
+		</header>
+		<div class="c-categories l-categories">
+			<header class="c-categories__header l-categories__line">
+				<h3>Nom</h3>
+				<h3>Actions</h3>
+			</header>
+			{% for category in categories %}
+				<div class="c-category l-categories__line">
+					<p class="c-category__title">{{ category.name }}</p>
+					<div class="l-category__buttons">
+						<a href="{{ path('app_category_show', {'id': category.id}) }}" class="c-cta c-cta--fixed">Afficher</a>
+						<a href="{{ path('app_category_edit', {'id': category.id}) }}" class="c-cta c-cta--fixed">Éditer</a>
+					</div>
+				</div>
+			{% else %}
+				<h3 class="c-norecords">Aucune categorie n'est enregistrée pour l'instant :
+					<a href="{{ path('app_category_new') }}">en créer une nouvelle</a>
+				</h3>
+			{% endfor %}
+		</div>
+	</main>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Category
+{% endblock %}
+
+{% block body %}
+	<main>
+		<header class="c-category-show__header l-show__header">
+			<a href="{{ path('app_category_index') }}" class="c-backlist">
+				{{ include('@folder_img/icon-backtolist.svg') }}
+			</a>
+			<h1 class="c-category-show__title">Nom de la catégorie : {{ category.name }}</h1>
+			<a href="{{ path('app_category_edit', {'id': category.id}) }}" class="c-cta">Éditer</a>
+			{{ include('category/_delete_form.html.twig') }}
+		</header>
+	</main>
+{% endblock %}

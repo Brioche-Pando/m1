@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Objet{% endblock %}
+
+{% block body %}<main><header class="c-item-show__header l-show__header">
+			<a href="{{ path('app_item_index') }}" class="c-backlist">
+				{{ include('@folder_img/icon-backtolist.svg') }}
+			</a>
+			<h1 class="c-item-show__title">Créer un nouvel objet</h1>
+		</header>
+
+    {{ include('item/_form.html.twig') }}
+</main>
+{% endblock %}

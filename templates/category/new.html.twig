@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Category
+{% endblock %}
+
+{% block body %}
+	<main>
+		<header class="c-category-show__header l-show__header">
+			<a href="{{ path('app_category_index') }}" class="c-backlist">
+				{{ include('@folder_img/icon-backtolist.svg') }}
+			</a>
+			<h1 class="c-category-show__title">Créer une nouvelle catégorie</h1>
+		</header>
+		{{ include('category/_form.html.twig') }}
+	</main>
+{% endblock %}

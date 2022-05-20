@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Éditer Objet
+{% endblock %}
+
+{% block body %}
+	<main>
+		<header class="c-item-show__header l-show__header">
+			<a href="{{ path('app_item_index') }}" class="c-backlist">
+				{{ include('@folder_img/icon-backtolist.svg') }}
+			</a>
+			<h1 class="c-item-show__title">Modifier : {{ item.name }}</h1>
+			{{ include('item/_delete_form.html.twig') }}
+		</header>
+
+		{{ include('item/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+	</main>
+{% endblock %}

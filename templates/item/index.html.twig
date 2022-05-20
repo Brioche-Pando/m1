@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Objet index
+{% endblock %}
+
+{% block body %}
+	<main>
+		<header class="l-header c-header">
+			<h1 class="c-header__title">Liste de tous les objets :</h1>
+			<a href="{{ path('app_item_new') }}" class="c-cta">Ajouter</a>
+		</header>
+		<div class="c-items l-items">
+			{% for item in items %}
+				<div class="c-item">
+					<header class="c-item__header">
+						<div class="l-item__banner">
+							<h4 class="c-item__title">{{ item.name }}</h4>
+							<p class="c-item__category">{{ item.category.name }}</p>
+						</div>
+						<img src="{{ item.image }}" alt="photo {{ item.name }}">
+					</header>
+					<div class="c-item__datas l-item__datas">
+						<div class="c-item__icons l-item__icons">
+							{% for i in 1..item.water %}
+								<div class="c-item__icon">{{ include('@folder_img/icon-water.svg') }}</div>
+							{% endfor %}
+						</div>
+						<div class="c-item__icons l-item__icons">
+							{% for i in 1..item.light %}
+								<div class="c-item__icon">{{ include('@folder_img/icon-sun.svg') }}</div>
+							{% endfor %}
+						</div>
+					</div>
+					<p class="c-item__description">{{ item.description }}</p>
+					<div class="c-item__footer">
+						<p class="c-item__price">{{ item.price|format_currency('EUR', {rounding_mode: 'floor'}, locale='fr') }}</p>
+						<div class="c-item__buttons">
+							<a href="{{ path('app_item_show', {'id': item.id}) }}" class="c-cta">Voir</a>
+							<a href="{{ path('app_item_edit', {'id': item.id}) }}" class="c-cta">Éditer</a>
+						</div>
+					</div>
+				</div>
+			{% else %}
+				<h3 class="c-norecords">Aucun item n'est enregistrée pour l'instant :
+					<a href="{{ path('app_item_new') }}">en créer un nouveau</a>
+				</h3>
+			{% endfor %}
+		</main>
+	{% endblock %}

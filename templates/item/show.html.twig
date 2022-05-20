@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Objet
+{% endblock %}
+
+{% block body %}
+	<main>
+		<header class="c-show-item__header l-show__header">
+			<a href="{{ path('app_item_index') }}" class="c-backlist">
+				{{ include('@folder_img/icon-backtolist.svg') }}
+			</a>
+			<h1 class="c-show-item__title">{{ item.name }}</h1>
+			<a href="{{ path('app_item_edit', {'id': item.id}) }}" class="c-cta">Éditer</a>
+			{{ include('item/_delete_form.html.twig') }}
+		</header>
+		<div class="c-show-item__content">
+			<img src="{{ item.image }}" alt="photo {{ item.name }}" class="c-show-item__img">
+			<p class="c-show-item__category">
+				<mark>Catégorie :</mark>
+				{{ item.category.name }}</p>
+			<p class="c-show-item__description">
+				<mark>Description :</mark>
+				{{ item.description }}</p>
+			<div class="c-show-item__water">
+				<mark>Besoin en eau :</mark>
+				<div class="c-show-item__icons">
+					{% for i in 1..item.water %}
+						<div class="c-item__icon">{{ include('@folder_img/icon-water.svg') }}</div>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="c-show-item__sun">
+				<mark>Besoin en ensoleillement :</mark>
+				<div class="c-show-item__icons">
+					{% for i in 1..item.light %}
+						<div class="c-item__icon">{{ include('@folder_img/icon-sun.svg') }}</div>
+					{% endfor %}
+				</div>
+			</div>
+			<p class="c-show-item__price">
+				<mark>Prix :</mark>
+				{{ item.price|format_currency('EUR', {rounding_mode: 'floor'}, locale='fr') }}</p>
+		</div>
+	</div>
+</main>{% endblock %}
